@@ -4,7 +4,7 @@ import styles from './app.module.css';
 export const App = () => {
 	const NUMS = ['7', '8', '9', '-', '4', '5', '6', '+', '1', '2', '3', 'C', '0', '='];
 
-	const [operand1, setOperand1] = useState('');
+	const [operand1, setOperand1] = useState('0');
 	const [operand2, setOperand2] = useState('');
 	const [operator, setOperator] = useState('');
 	const [summ, setSumm] = useState(null);
@@ -16,7 +16,11 @@ export const App = () => {
 			setOperator('');
 			setSumm(null);
 		} else if (operator === '' || operand1 === '') {
-			setOperand1(operand1 + '' + button);
+			if (operand1 === '0') {
+				setOperand1(button);
+			} else {
+				setOperand1(operand1 + '' + button);
+			}
 		} else {
 			setOperand2(operand2 + '' + button);
 		}
@@ -34,7 +38,7 @@ export const App = () => {
 	}
 
 	function onButtonClearClick() {
-		setOperand1('');
+		setOperand1('0');
 		setOperand2('');
 		setOperator('');
 		setSumm(null);
